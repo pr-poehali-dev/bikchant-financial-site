@@ -19,34 +19,52 @@ const Index = () => {
 
   const services = [
     {
+      icon: "Sparkles",
+      title: "Первичная консультация",
+      description: "Знакомство, анализ текущей финансовой ситуации, постановка целей",
+      price: "Бесплатно",
+      duration: "60 минут",
+      features: ["Диагностика финансов", "Постановка целей", "План действий"]
+    },
+    {
       icon: "TrendingUp",
       title: "Инвестиционная стратегия",
-      description: "Разработка персональной стратегии инвестирования с учётом ваших целей и рисков"
+      description: "Разработка персонального инвестиционного портфеля с учётом рисков",
+      price: "от 15 000 ₽",
+      duration: "2-3 встречи",
+      features: ["Анализ рисков", "Подбор инструментов", "Стратегия на 3-5 лет", "Ребалансировка"]
     },
     {
       icon: "Shield",
-      title: "Защита капитала",
-      description: "Создание финансовой подушки безопасности и страхование активов"
+      title: "Финансовая защита",
+      description: "Создание финансовой подушки безопасности и подбор страхования",
+      price: "от 8 000 ₽",
+      duration: "1-2 встречи",
+      features: ["Расчёт подушки", "Подбор страховок", "План накоплений"]
     },
     {
       icon: "PiggyBank",
-      title: "Планирование бюджета",
-      description: "Оптимизация расходов и построение эффективной системы накоплений"
+      title: "Персональный бюджет",
+      description: "Анализ доходов и расходов, построение эффективной системы",
+      price: "от 10 000 ₽",
+      duration: "2 встречи",
+      features: ["Аудит расходов", "Оптимизация бюджета", "Система учёта", "Поддержка 30 дней"]
     },
     {
       icon: "LineChart",
-      title: "Налоговое планирование",
-      description: "Легальная оптимизация налогов и правильное использование льгот"
-    },
-    {
-      icon: "Wallet",
-      title: "Пенсионное планирование",
-      description: "Формирование капитала для комфортной жизни на пенсии"
+      title: "Налоговая оптимизация",
+      description: "Легальные способы снижения налогов и использование льгот",
+      price: "от 12 000 ₽",
+      duration: "1-2 встречи",
+      features: ["Аудит налогов", "Схемы оптимизации", "Вычеты и льготы", "Документы"]
     },
     {
       icon: "Target",
-      title: "Финансовые цели",
-      description: "Пошаговый план достижения крупных финансовых целей"
+      title: "Финансовый план",
+      description: "Комплексный план на 5-10 лет для достижения крупных целей",
+      price: "от 25 000 ₽",
+      duration: "3-4 встречи",
+      features: ["Анализ ситуации", "Стратегия инвестиций", "Налоги и защита", "План на 10 лет", "Годовая поддержка"]
     }
   ];
 
@@ -172,25 +190,40 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-up">
             <h2 className="text-4xl md:text-5xl font-montserrat font-bold mb-4">
-              Услуги
+              Услуги и цены
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Комплексный подход к управлению вашими финансами
+              Прозрачные тарифы. Комплексный подход к управлению вашими финансами
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-xl animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+              <Card key={index} className="bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-xl animate-scale-in group" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                     <Icon name={service.icon} className="text-primary" size={28} />
                   </div>
-                  <h3 className="text-xl font-montserrat font-bold mb-3">
+                  <h3 className="text-xl font-montserrat font-bold mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <div className="flex items-baseline gap-2 mb-3">
+                    <span className="text-2xl font-bold text-primary">{service.price}</span>
+                    <span className="text-sm text-muted-foreground">/ {service.duration}</span>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
                     {service.description}
                   </p>
+                  <div className="space-y-2 pt-4 border-t border-border">
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-sm">
+                        <Icon name="Check" className="text-primary flex-shrink-0" size={16} />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Button className="w-full mt-6 bg-primary text-primary-foreground hover:bg-primary/90">
+                    Выбрать
+                  </Button>
                 </CardContent>
               </Card>
             ))}
